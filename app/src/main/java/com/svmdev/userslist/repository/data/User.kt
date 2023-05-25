@@ -5,8 +5,7 @@ import com.google.gson.annotations.SerializedName
 class User(
     @SerializedName("login") val login: String,
     @SerializedName("id") val id: Long,
-    @SerializedName("node_id") val nodeID: String
-    /*
+    @SerializedName("node_id") val nodeID: String,
     @SerializedName("avatar_url") val avatarURL: String,
     @SerializedName("gravatar_id") val gravatarID: String,
     @SerializedName("url") val url: String,
@@ -22,7 +21,4 @@ class User(
     @SerializedName("received_events_url") val receivedEventsURL: String,
     @SerializedName("type") val type: String,
     @SerializedName("site_admin") val siteAdmin: Boolean
-
-
-     */
 )
