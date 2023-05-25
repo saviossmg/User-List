@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">Users List</string>
+
+    <string name="user_name_sample">Fulano Beltrano da Silva</string>
+</resources>
