@@ -1,6 +1,7 @@
 package com.svmdev.userslist.repository.data
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 class User(
     @SerializedName("login") val login: String,
@@ -21,4 +22,4 @@ class User(
     @SerializedName("received_events_url") val receivedEventsURL: String,
     @SerializedName("type") val type: String,
     @SerializedName("site_admin") val siteAdmin: Boolean
-)
+) : Serializable

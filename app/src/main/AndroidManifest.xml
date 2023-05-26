@@ -19,6 +19,7 @@
 
         <activity
             android:screenOrientation="portrait"
+            android:configChanges="uiMode"
             android:name=".users.view.UserListActivity"
             android:exported="true"
             android:theme="@style/Theme.App.SplashScreen">
@@ -31,13 +32,17 @@
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".users.view.UserReposActivity"
+            android:configChanges="uiMode"
+            android:theme="@style/Theme.UsersList"
+            android:name=".users.view.UserProfileActivity"
             android:exported="false" />
 
         <activity
             android:screenOrientation="portrait"
-            android:name=".users.view.UserProfileActivity"
+            android:configChanges="uiMode"
+            android:name=".users.view.UserReposActivity"
             android:exported="false" />
+
     </application>
 
 </manifest>

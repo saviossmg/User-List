@@ -59,16 +59,8 @@ class UserListAdapter(
             .placeholder(R.drawable.profile_default)
             .into(holder.ivProfile);
 
-        /*
-        Picasso.with(viewModel.appContext).load(user.avatarURL).fit().centerCrop()
-            .placeholder(R.drawable.profile_default)
-            .error(R.drawable.profile_default)
-            .into(holder.ivProfile);
-
-         */
-
         holder.llCell.setOnClickListener {
-            MessagesHelper.showMessageLong(viewModel.appContext, "Usuario clicado: " + user.login)
+            viewModel.selectedUser.postValue(user)
         }
     }
 

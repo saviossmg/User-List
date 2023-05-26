@@ -1,11 +1,11 @@
 package com.svmdev.userslist.users.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.svmdev.userslist.R
@@ -15,12 +15,13 @@ import com.svmdev.userslist.repository.service.common.MessagesHelper
 import com.svmdev.userslist.users.adapter.UserListAdapter
 import com.svmdev.userslist.users.viewmodel.UserListViewModel
 
-class UserListActivity : AppCompatActivity() {
+
+class UserListActivity : BaseActivity() {
 
     private lateinit var binding: ActivityUserListBinding
     private val viewModel = UserListViewModel()
 
-    private lateinit var adapter: UserListAdapter
+    private var adapter: UserListAdapter? = null
     private lateinit var linearLayoutManager: LinearLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -29,6 +30,7 @@ class UserListActivity : AppCompatActivity() {
 
         binding = ActivityUserListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        initPrevConfig()
 
         linearLayoutManager = LinearLayoutManager(this)
         binding.rvUserList.layoutManager = linearLayoutManager
@@ -54,6 +56,8 @@ class UserListActivity : AppCompatActivity() {
             }
         }
 
+        viewModel.selectedUser.observe(this) {user -> performSelectedUserProfile(user)}
+
         viewModel.usersList.observe(this) { userList -> onLoadUserList(userList) }
         viewModel.onError.observe(this) { e -> onShowError(e) }
         viewModel.onSearchIsEmpty.observe(this) { isEmpty -> onShowEmptyError(isEmpty) }
@@ -66,13 +70,19 @@ class UserListActivity : AppCompatActivity() {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
 
             override fun afterTextChanged(text: Editable?) {
-                adapter.onSearchUser(text.toString())
+                adapter?.onSearchUser(text.toString())
             }
         })
     }
 
     private fun performLoadUserList() {
         viewModel.loadUserList()
+    }
+
+    private fun performSelectedUserProfile(user: User) {
+        val profileIntent = Intent(this, UserProfileActivity::class.java)
+        profileIntent.putExtra(UserProfileActivity.USER_EXTRA, user)
+        startActivity(profileIntent)
     }
 
     private fun onLoadUserList(userList: ArrayList<User>) {
