@@ -1,41 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/llCell"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:id="@+id/iv_profile"
+            android:id="@+id/ivProfile"
             android:layout_width="@dimen/size_90"
             android:layout_height="@dimen/size_90"
-            android:layout_marginStart="@dimen/size_20"
             android:layout_marginVertical="@dimen/size_20"
-            app:srcCompat="@drawable/profile_default" />
+            android:layout_marginStart="@dimen/size_20" />
 
         <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginStart="@dimen/size_10"
             android:layout_marginEnd="@dimen/size_20"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:orientation="vertical">
 
             <TextView
-                android:id="@+id/tv_name"
+                android:id="@+id/tvName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/user_name_sample"
-                android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+                android:textSize="@dimen/txt_list_primary"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvUserType"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_08"
+                android:textSize="@dimen/txt_list_secondary" />
+
+            <TextView
+                android:id="@+id/tvAdmin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/size_08"
+                android:textSize="@dimen/txt_list_secondary"
+                android:textStyle="italic" />
+
 
         </LinearLayout>
 
     </LinearLayout>
 
-</FrameLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="@color/purple_500"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/llCell" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

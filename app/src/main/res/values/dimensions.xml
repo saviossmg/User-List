@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+
     <item name="size_08" type="dimen">8dp</item>
     <item name="size_10" type="dimen">10dp</item>
     <item name="size_12" type="dimen">12dp</item>
@@ -7,6 +9,11 @@
     <item name="size_18" type="dimen">18dp</item>
     <item name="size_20" type="dimen">20dp</item>
     <item name="size_24" type="dimen">24dp</item>
+
+    <item name="txt_error_list" type="dimen">28sp</item>
+    <item name="txt_list_primary" type="dimen">22sp</item>
+    <item name="txt_list_secondary" type="dimen">18sp</item>
+    <item name="txt_loading" type="dimen">18sp</item>
 
 
 

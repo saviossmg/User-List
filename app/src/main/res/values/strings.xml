@@ -2,4 +2,21 @@
     <string name="app_name">Users List</string>
 
     <string name="user_name_sample">Fulano Beltrano da Silva</string>
+    <string name="error_sample">Erro: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
+
+    <!-- Listagem -->
+    <string name="user_type">Tipo de usuário: %s</string>
+    <string name="user_admin">Administrador: %s</string>
+    <string name="yes">Sim</string>
+    <string name="no">Não</string>
+
+    <string name="search_user_hint">Digite o nome de usuário para buscar.</string>
+    <string name="user_list_loading_text">Carregando usuários.\nAguarde</string>
+    <string name="user_profile_loading_text">Carregando informações do usuário %s.\n\nAguarde</string>
+
+    <!-- Erros -->
+    <string name="error_user_list_search">Não há usuarios com esses termos.\n\nVerifique os termos utilizados e tente novamente.</string>
+    <string name="error_api">Houve um erro no carregamento.\n\nVerifique a conexão e tente novamente.</string>
+    <string name="error_user_list_empty">Houve um problema no carregamento e lista está vazia.\n\nVerifique a conexão e tente novamente.</string>
+
 </resources>

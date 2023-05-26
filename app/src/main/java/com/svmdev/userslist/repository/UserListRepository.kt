@@ -1,18 +1,15 @@
 package com.svmdev.userslist.repository
 
-import com.google.gson.GsonBuilder
 import com.svmdev.userslist.repository.data.User
 import com.svmdev.userslist.repository.data.UserRepository
+import com.svmdev.userslist.repository.service.RetrofitClient
 import com.svmdev.userslist.repository.service.UserListEndpoints
 import retrofit2.Call
-import retrofit2.Retrofit
 
-class UserListRepository(private val retrofit: Retrofit) :
+class UserListRepository(private val retrofit: RetrofitClient) :
     UserListEndpoints {
 
-    private val endpoints by lazy { retrofit.create(UserListEndpoints::class.java) }
-    private val  gsonBuilder = GsonBuilder()
-    private val gson = gsonBuilder.create()
+    private val endpoints = retrofit.getRepository()
 
     override fun getUserList(): Call<ArrayList<User>> {
         return endpoints.getUserList()
