@@ -57,10 +57,10 @@ class UserListAdapter(
             .load(user.avatarURL)
             .centerCrop()
             .placeholder(R.drawable.profile_default)
-            .into(holder.ivProfile);
+            .into(holder.ivProfile)
 
         holder.llCell.setOnClickListener {
-            viewModel.selectedUser.postValue(user)
+            viewModel.loadUserProfile(user.login)
         }
     }
 

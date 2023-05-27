@@ -4,6 +4,8 @@ class DataCache {
 
     companion object {
         val cacheUsersList = ArrayList<User>()
+        val cacheUserRepository = ArrayList<UserRepository>()
+        var cacheUserProfile: User? = null
     }
 
 }

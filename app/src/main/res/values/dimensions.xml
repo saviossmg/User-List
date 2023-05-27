@@ -22,6 +22,7 @@
     <item name="size_90" type="dimen">90dp</item>
     <item name="size_100" type="dimen">100dp</item>
     <item name="size_120" type="dimen">120dp</item>
+    <item name="size_150" type="dimen">150dp</item>
 
 
 </resources>

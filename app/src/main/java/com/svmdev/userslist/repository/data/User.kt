@@ -21,5 +21,15 @@ class User(
     @SerializedName("events_url") val eventsURL: String,
     @SerializedName("received_events_url") val receivedEventsURL: String,
     @SerializedName("type") val type: String,
-    @SerializedName("site_admin") val siteAdmin: Boolean
+    @SerializedName("site_admin") val siteAdmin: Boolean,
+    @SerializedName("name") val name: String,
+    @SerializedName("company") val company: String,
+    @SerializedName("blog") val blog: String,
+    @SerializedName("location") val location: String,
+    @SerializedName("public_repos") val publicRepos: Long,
+    @SerializedName("public_gists") val publicGists: Long,
+    @SerializedName("followers") val followers: Long,
+    @SerializedName("following") val following: Long,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("updated_at") val updatedAt: String
 ) : Serializable

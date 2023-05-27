@@ -48,12 +48,17 @@ class UserListActivity : BaseActivity() {
 
     private fun setupObservables() {
         viewModel.loading.observe(this) { loading ->
-            onShowLoadElements(loading)
+            onShowLoadElements(loading, getString(R.string.user_list_loading_text))
             if (loading) {
                 binding.rvUserList.visibility = GONE
                 binding.edtxSearch.visibility = GONE
                 binding.tvListUnavailable.visibility = GONE
             }
+        }
+
+        viewModel.loadingProfile.observe(this) {loading ->
+            val text = getString(R.string.user_profile_loading_text, viewModel.getSelectUserLogin())
+            onShowLoadElements(loading,text )
         }
 
         viewModel.selectedUser.observe(this) {user -> performSelectedUserProfile(user)}
@@ -83,6 +88,7 @@ class UserListActivity : BaseActivity() {
         val profileIntent = Intent(this, UserProfileActivity::class.java)
         profileIntent.putExtra(UserProfileActivity.USER_EXTRA, user)
         startActivity(profileIntent)
+
     }
 
     private fun onLoadUserList(userList: ArrayList<User>) {
@@ -113,9 +119,10 @@ class UserListActivity : BaseActivity() {
         }
     }
 
-    private fun onShowLoadElements(show: Boolean) {
+    private fun onShowLoadElements(show: Boolean, text: String) {
         val visibility = if (show) VISIBLE else GONE
         binding.icLoading.root.visibility = visibility
+        binding.icLoading.tvLoading.text = text
     }
 
     private fun onShowListElements(show: Boolean) {

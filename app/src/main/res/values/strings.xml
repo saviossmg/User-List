@@ -2,6 +2,7 @@
     <string name="app_name">Users List</string>
 
     <string name="user_name_sample">Fulano Beltrano da Silva</string>
+    <string name="sample_empty">-</string>
     <string name="error_sample">Erro: Lorem ipsum dolor sit amet, consectetur adipiscing elit.</string>
 
     <!-- Listagem -->
@@ -14,9 +15,20 @@
     <string name="user_list_loading_text">Carregando usuários.\nAguarde</string>
     <string name="user_profile_loading_text">Carregando informações do usuário %s.\n\nAguarde</string>
 
+    <!-- perfil -->
+    <string name="profile_header_title">Perfil de %s</string>
+    <string name="profile_image">Imagem de perfil</string>
+    <string name="profile_company_lb">Compania</string>
+    <string name="profile_Location_lb">Localização</string>
+    <string name="profile_blog_lb">Blog</string>
+    <string name="profile_created_lb">Criado em</string>
+    <string name="profile_update_lb">Ultima atualização</string>
+
     <!-- Erros -->
     <string name="error_user_list_search">Não há usuarios com esses termos.\n\nVerifique os termos utilizados e tente novamente.</string>
     <string name="error_api">Houve um erro no carregamento.\n\nVerifique a conexão e tente novamente.</string>
     <string name="error_user_list_empty">Houve um problema no carregamento e lista está vazia.\n\nVerifique a conexão e tente novamente.</string>
+    <string name="profile_repo_btn">LISTAR REPOSITÓRIOS</string>
+
 
 </resources>

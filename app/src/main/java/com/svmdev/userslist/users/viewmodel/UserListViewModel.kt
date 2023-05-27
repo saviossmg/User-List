@@ -17,6 +17,7 @@ class UserListViewModel : BaseViewModel() {
     val usersList: MutableLiveData<ArrayList<User>> = MutableLiveData()
     val onSearchIsEmpty: MutableLiveData<Boolean> = MutableLiveData()
     val selectedUser: MutableLiveData<User> = MutableLiveData()
+    val loadingProfile: MutableLiveData<Boolean> = MutableLiveData()
     private val repository = RetrofitClient().getRepository()
 
     fun loadUserList() {
@@ -53,6 +54,34 @@ class UserListViewModel : BaseViewModel() {
                 loading.postValue(false)
             }
         })
+    }
+
+    fun loadUserProfile(userLogin: String) {
+        loadingProfile.postValue(true)
+        val apiCall = repository.getUserInformation(userLogin)
+
+        apiCall.enqueue(object : Callback<User> {
+            override fun onResponse(call: Call<User>, response: Response<User>) {
+                var userReturn: User? = null
+                if (response.code() == ServiceLinks.codeOk) {
+                    userReturn = response.body()
+                }
+                loadingProfile.postValue(false)
+                selectedUser.postValue(userReturn)
+                DataCache.cacheUserProfile = response.body()
+
+            }
+
+            override fun onFailure(call: Call<User>, t: Throwable) {
+                onError.postValue(t)
+                showMessageShort(appContext, appContext.getString(R.string.error_api))
+                loadingProfile.postValue(false)
+            }
+        })
+    }
+
+    fun getSelectUserLogin(): String {
+        return selectedUser.value?.login ?: "-"
     }
 
 }

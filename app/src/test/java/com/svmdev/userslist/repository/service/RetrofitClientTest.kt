@@ -89,8 +89,6 @@ class RetrofitClientTest {
         val errorBody = response.errorBody()
         val responseWrapper = response.body()
 
-        println("testGetUserRepositoriesWithPages TOTAL PAGINAS: "+currentPage)
-
         assert(errorBody == null) { GET_USER_REPO_MESSAGE_OFF }
         assert(responseWrapper != null) { GET_USER_REPO_MESSAGE }
         assert(response.code() == 200) { GET_USER_REPO_MESSAGE_200 + response.code() }

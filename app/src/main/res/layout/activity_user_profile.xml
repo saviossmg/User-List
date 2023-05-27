@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -22,6 +21,223 @@
             app:layout_scrollFlags="scroll|exitUntilCollapsed" />
 
     </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nsvScroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ablHeaderContainer">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/ivProfile"
+                android:layout_width="@dimen/size_150"
+                android:layout_height="@dimen/size_150"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/size_12"
+                android:contentDescription="@string/profile_image" />
+
+            <TextView
+                android:id="@+id/tvName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_12"
+                android:text="@string/sample_empty"
+                android:textAlignment="center"
+                android:textSize="@dimen/txt_list_primary"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:id="@+id/llInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginTop="@dimen/size_16"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/llCompany"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:text="@string/profile_company_lb"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/txt_list_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvCompany"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_empty"
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/txt_list_secondary"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/dvCompany"
+                    layout="@layout/ic_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/llLocation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:text="@string/profile_Location_lb"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/txt_list_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvLocation"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_empty"
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/txt_list_secondary"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/dvLocation"
+                    layout="@layout/ic_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/llBlog"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:text="@string/profile_blog_lb"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/txt_list_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvBlog"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_empty"
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/txt_list_secondary"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/dvBlog"
+                    layout="@layout/ic_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/llCreated"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:text="@string/profile_created_lb"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/txt_list_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvCreated"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_empty"
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/txt_list_secondary"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <include
+                    android:id="@+id/dvCreated"
+                    layout="@layout/ic_divider"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:id="@+id/llUpdate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/size_10"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/size_10"
+                        android:text="@string/profile_update_lb"
+                        android:textAlignment="viewStart"
+                        android:textSize="@dimen/txt_list_secondary" />
+
+                    <TextView
+                        android:id="@+id/tvUpdate"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sample_empty"
+                        android:textAlignment="viewEnd"
+                        android:textSize="@dimen/txt_list_secondary"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1" />
+
+
+            <Button
+                android:id="@+id/btListRepo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/size_20"
+                android:layout_marginVertical="@dimen/size_20"
+                android:text="@string/profile_repo_btn"
+                android:textAlignment="center" />
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
