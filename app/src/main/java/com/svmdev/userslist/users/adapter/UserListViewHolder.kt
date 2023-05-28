@@ -7,7 +7,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.svmdev.userslist.R
 
-class UserListViewHolder(view: View): RecyclerView.ViewHolder(view) {
+class UserListViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     val llCell: LinearLayout = view.findViewById(R.id.llCell)
     val ivProfile: ImageView = view.findViewById(R.id.ivProfile)

@@ -6,5 +6,6 @@ class ServiceLinks {
         const val token = ""
         const val baseUrl = "https://api.github.com/"
         const val usersUrl = "users"
+        const val gitHubBaseUrl = "https://github.com/"
     }
 }

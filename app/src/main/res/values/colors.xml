@@ -9,6 +9,6 @@
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
 
-    <color name="colorBlackTransparent">#94000000</color>
+    <color name="colorBlackTransparent">#DF000000</color>
     <color name="colorGrayTransparent">#59494949</color>
 </resources>

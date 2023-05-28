@@ -1,11 +1,11 @@
 package com.svmdev.userslist.users.view
 
-import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import androidx.appcompat.app.AppCompatActivity
 
-open class BaseActivity: AppCompatActivity() {
+
+open class BaseActivity : AppCompatActivity() {
 
     var mPrevConfig: Configuration? = null
 

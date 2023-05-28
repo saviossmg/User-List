@@ -24,6 +24,21 @@
     <string name="profile_created_lb">Criado em</string>
     <string name="profile_update_lb">Ultima atualização</string>
 
+    <string name="profile_repo_loading_info">Carregando repositorio do usuário %s.\n\nAguarde</string>
+    <string name="profile_repo_loading_page">Carregando pagina %s.\n\nAguarde</string>
+
+    <!-- listagem repo -->
+    <string name="repo_list_header_title">Repositórios de %s</string>
+    <string name="repo_list_name">Nome</string>
+    <string name="repo_none">N/D</string>
+    <string name="repo_list_description">Descrição</string>
+    <string name="repo_list_license">Licença</string>
+    <string name="repo_list_created">Criado em</string>
+    <string name="repo_list_updated">Atualizado em</string>
+    <string name="repo_message_loaded">Clique em um item da lista para selecionar um repositórios para mais detalhes.</string>
+    <string name="repo_message_loading">Carregando página %s.</string>
+    <string name="error_repo_empty">Não há repositorios listados para esse usuário.</string>
+
     <!-- Erros -->
     <string name="error_user_list_search">Não há usuarios com esses termos.\n\nVerifique os termos utilizados e tente novamente.</string>
     <string name="error_api">Houve um erro no carregamento.\n\nVerifique a conexão e tente novamente.</string>

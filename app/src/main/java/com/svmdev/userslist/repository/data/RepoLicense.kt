@@ -1,6 +1,7 @@
 package com.svmdev.userslist.repository.data
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class RepoLicense(
     @SerializedName("key")
@@ -17,4 +18,4 @@ data class RepoLicense(
 
     @SerializedName("node_id")
     val nodeID: String
-)
+) : Serializable

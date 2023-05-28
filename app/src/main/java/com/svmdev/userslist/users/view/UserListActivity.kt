@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.svmdev.userslist.R
 import com.svmdev.userslist.databinding.ActivityUserListBinding
 import com.svmdev.userslist.repository.data.User
-import com.svmdev.userslist.repository.service.common.MessagesHelper
+import com.svmdev.userslist.repository.service.common.CommonHelper
 import com.svmdev.userslist.users.adapter.UserListAdapter
 import com.svmdev.userslist.users.viewmodel.UserListViewModel
 
@@ -56,12 +56,12 @@ class UserListActivity : BaseActivity() {
             }
         }
 
-        viewModel.loadingProfile.observe(this) {loading ->
+        viewModel.loadingProfile.observe(this) { loading ->
             val text = getString(R.string.user_profile_loading_text, viewModel.getSelectUserLogin())
-            onShowLoadElements(loading,text )
+            onShowLoadElements(loading, text)
         }
 
-        viewModel.selectedUser.observe(this) {user -> performSelectedUserProfile(user)}
+        viewModel.selectedUser.observe(this) { user -> performSelectedUserProfile(user) }
 
         viewModel.usersList.observe(this) { userList -> onLoadUserList(userList) }
         viewModel.onError.observe(this) { e -> onShowError(e) }
@@ -104,7 +104,7 @@ class UserListActivity : BaseActivity() {
     }
 
     private fun onShowError(error: Throwable) {
-        error.message?.let { MessagesHelper.showMessageShort(this, it) }
+        error.message?.let { CommonHelper.showMessageShort(this, it) }
         binding.tvListUnavailable.visibility = VISIBLE
         binding.tvListUnavailable.text = getString(R.string.error_api)
     }

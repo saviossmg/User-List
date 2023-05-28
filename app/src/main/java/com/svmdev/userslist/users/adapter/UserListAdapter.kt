@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.SortedListAdapterCallback
 import com.bumptech.glide.Glide
 import com.svmdev.userslist.R
 import com.svmdev.userslist.repository.data.User
-import com.svmdev.userslist.repository.service.common.MessagesHelper
 import com.svmdev.userslist.users.viewmodel.UserListViewModel
 
 class UserListAdapter(
@@ -68,7 +67,7 @@ class UserListAdapter(
         val textSearch = text.uppercase()
         val filteredList = ArrayList<User>()
 
-        if(text.isEmpty()){
+        if (text.isEmpty()) {
             filteredList.addAll(userList)
         } else {
             userList.forEach {
@@ -90,7 +89,7 @@ class UserListAdapter(
     }
 
     private fun isAdminUser(user: User): String {
-        val yesOrNo = if(user.siteAdmin) R.string.yes else R.string.no
+        val yesOrNo = if (user.siteAdmin) R.string.yes else R.string.no
         val adminAnswers = viewModel.appContext.getString(yesOrNo)
         return viewModel.appContext.getString(R.string.user_admin, adminAnswers)
     }

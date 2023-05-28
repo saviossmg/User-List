@@ -1,13 +1,17 @@
 package com.svmdev.userslist.users.view
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View.GONE
+import android.view.View.VISIBLE
 import com.bumptech.glide.Glide
 import com.svmdev.userslist.R
 import com.svmdev.userslist.databinding.ActivityUserProfileBinding
 import com.svmdev.userslist.repository.data.User
-import com.svmdev.userslist.repository.service.common.MessagesHelper
+import com.svmdev.userslist.repository.data.UserListRepositoryPage
+import com.svmdev.userslist.repository.service.common.CommonHelper
 import com.svmdev.userslist.users.viewmodel.UserProfileViewModel
+
 
 class UserProfileActivity : BaseActivity() {
 
@@ -29,6 +33,7 @@ class UserProfileActivity : BaseActivity() {
 
         setupActionBar()
         setupNavigation()
+        setupLoad()
         setupProfile()
     }
 
@@ -43,8 +48,31 @@ class UserProfileActivity : BaseActivity() {
             onBackPressed()
         }
 
+        binding.ivProfile.setOnClickListener {
+            openBrowser(viewModel.getUserProfileUrl())
+        }
+
+        binding.tvBlog.setOnClickListener {
+            openBrowser(viewModel.getUserBlogUrl())
+        }
+
         binding.btListRepo.setOnClickListener {
-            MessagesHelper.showMessageLong(this, "Carregar Repositorios")
+            viewModel.performLoadUserRepositoryList()
+        }
+
+        viewModel.userListRepositoryPagination.observe(this) { userRepoList ->
+            onRepositoryList(userRepoList)
+        }
+    }
+
+    private fun setupLoad() {
+        viewModel.loading.observe(this) { isLoading ->
+            val visibility = if (isLoading) VISIBLE else GONE
+            binding.icLoading.root.visibility = visibility
+        }
+
+        viewModel.loadingMessage.observe(this) { text ->
+            binding.icLoading.tvLoading.text = text
         }
     }
 
@@ -64,21 +92,21 @@ class UserProfileActivity : BaseActivity() {
             .placeholder(R.drawable.profile_default)
             .into(binding.ivProfile)
 
-        if(textIsEmpty(user.company)) {
+        if (textIsEmpty(user.company)) {
             binding.llCompany.visibility = GONE
             binding.dvCompany.root.visibility = GONE
         } else {
             binding.tvCompany.text = user.company
         }
 
-        if(textIsEmpty(user.location)) {
+        if (textIsEmpty(user.location)) {
             binding.llLocation.visibility = GONE
             binding.dvLocation.root.visibility = GONE
         } else {
             binding.tvLocation.text = user.location
         }
 
-        if(textIsEmpty(user.blog)) {
+        if (textIsEmpty(user.blog)) {
             binding.llBlog.visibility = GONE
             binding.dvBlog.root.visibility = GONE
         } else {
@@ -90,8 +118,22 @@ class UserProfileActivity : BaseActivity() {
         binding.tvUpdate.text = viewModel.performDateFormat(user.updatedAt)
     }
 
-    private fun textIsEmpty(text: String) : Boolean {
-        return  text.isNullOrBlank() || text.isEmpty()
+    private fun onRepositoryList(userRepoList: ArrayList<UserListRepositoryPage>) {
+        if (userRepoList.isNotEmpty()) {
+            val repoListIntent = Intent(this, UserReposActivity::class.java)
+            repoListIntent.putExtra(UserReposActivity.REPO_EXTRA_USER, viewModel.userLogin)
+            startActivity(repoListIntent)
+        } else {
+            CommonHelper.showMessageLong(this, getString(R.string.error_repo_empty))
+        }
+    }
+
+    private fun openBrowser(url: String) {
+        CommonHelper.openBrowser(url, this)
+    }
+
+    private fun textIsEmpty(text: String): Boolean {
+        return text.isNullOrBlank() || text.isEmpty()
     }
 
 }

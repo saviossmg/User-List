@@ -1,9 +1,14 @@
 package com.svmdev.userslist.repository.service
 
 import com.svmdev.userslist.repository.UserListRepository
+import com.svmdev.userslist.repository.data.UserListRepositoryPage
+import com.svmdev.userslist.repository.data.UserRepository
 import com.svmdev.userslist.repository.service.common.ServiceLinks
 import org.junit.Assert.assertEquals
 import org.junit.Test
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 private const val URL_MESSAGE = "URL base está diferente"
 private const val GET_USER_MESSAGE = "GetAllUsers está vazio"
@@ -93,6 +98,38 @@ class RetrofitClientTest {
         assert(responseWrapper != null) { GET_USER_REPO_MESSAGE }
         assert(response.code() == 200) { GET_USER_REPO_MESSAGE_200 + response.code() }
         assert(currentPage > 0) { "Paginação está nula" }
+    }
+
+    @Test
+    fun testGetUserRepositoriesWithPagesByQ() {
+        val listUserRepoPages = ArrayList<UserListRepositoryPage>()
+        var currentPage = 0
+        var nextPage = 1
+        var executeProcess = true
+
+        do  {
+            val apiCall = service.getUserRepositoriesByPages(userName,nextPage)
+            val wait = apiCall.enqueue(object : Callback<ArrayList<UserRepository>> {
+                override fun onResponse(call: Call<ArrayList<UserRepository>>, response: Response<ArrayList<UserRepository>>) {
+                    val responseInfo = response.body()
+                    if(responseInfo == null){
+                        executeProcess = false
+                    } else {
+                        currentPage = nextPage
+                        val userRepoPage = UserListRepositoryPage(currentPage, responseInfo)
+                        listUserRepoPages.add(userRepoPage)
+                        nextPage++
+                    }
+                }
+
+                override fun onFailure(call: Call<ArrayList<UserRepository>>, t: Throwable) {
+                    executeProcess = false
+                }
+            })
+
+        } while (executeProcess)
+
+        assert(executeProcess)
     }
 
 }

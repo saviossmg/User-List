@@ -1,6 +1,7 @@
 package com.svmdev.userslist.repository.data
 
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class UserRepository(
 
@@ -199,9 +200,6 @@ data class UserRepository(
     @SerializedName("forks_count")
     val forksCount: Long,
 
-    @SerializedName("mirror_url")
-    val mirrorURL: Any? = null,
-
     @SerializedName("archived")
     val archived: Boolean,
 
@@ -237,6 +235,4 @@ data class UserRepository(
 
     @SerializedName("license")
     val repoLicense: RepoLicense
-
-
-)
+) : Serializable

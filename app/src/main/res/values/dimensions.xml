@@ -2,6 +2,7 @@
 <resources>
 
 
+    <item name="size_04" type="dimen">4dp</item>
     <item name="size_08" type="dimen">8dp</item>
     <item name="size_10" type="dimen">10dp</item>
     <item name="size_12" type="dimen">12dp</item>
@@ -13,6 +14,7 @@
     <item name="txt_error_list" type="dimen">28sp</item>
     <item name="txt_list_primary" type="dimen">22sp</item>
     <item name="txt_list_secondary" type="dimen">18sp</item>
+    <item name="txt_list_secondary_b" type="dimen">16sp</item>
     <item name="txt_loading" type="dimen">18sp</item>
 
 

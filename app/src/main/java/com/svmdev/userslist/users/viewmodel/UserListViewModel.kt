@@ -5,7 +5,7 @@ import com.svmdev.userslist.R
 import com.svmdev.userslist.repository.data.DataCache
 import com.svmdev.userslist.repository.data.User
 import com.svmdev.userslist.repository.service.RetrofitClient
-import com.svmdev.userslist.repository.service.common.MessagesHelper.showMessageShort
+import com.svmdev.userslist.repository.service.common.CommonHelper.showMessageShort
 import com.svmdev.userslist.repository.service.common.ServiceLinks
 
 import retrofit2.Call
