@@ -30,6 +30,7 @@ class UserReposActivity : BaseActivity() {
         binding = ActivityUserReposBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initPrevConfig()
+        initBackPressed()
         viewModel.initContext(this)
 
         setupActionBar()
@@ -38,9 +39,10 @@ class UserReposActivity : BaseActivity() {
         loadInformation()
     }
 
-    override fun onBackPressed() {
-        super.onBackPressed()
+    override fun exitOnBackPressed() {
         viewModel.resetPageInfo()
+        finish()
+        CommonHelper.closeSlideAnimation(this)
     }
 
     private fun setupActionBar() {

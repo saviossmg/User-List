@@ -28,6 +28,7 @@ class UserProfileActivity : BaseActivity() {
         binding = ActivityUserProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         initPrevConfig()
+        initBackPressed()
 
         viewModel.initContext(this)
 
@@ -37,6 +38,11 @@ class UserProfileActivity : BaseActivity() {
         setupProfile()
     }
 
+    override fun exitOnBackPressed() {
+        finish()
+        CommonHelper.closeSlideAnimation(this)
+    }
+
     private fun setupActionBar() {
         this.setSupportActionBar(binding.tbHeader)
         this.supportActionBar?.setDisplayShowTitleEnabled(false)
@@ -44,6 +50,7 @@ class UserProfileActivity : BaseActivity() {
     }
 
     private fun setupNavigation() {
+
         binding.tbHeader.setNavigationOnClickListener {
             onBackPressed()
         }
@@ -123,6 +130,7 @@ class UserProfileActivity : BaseActivity() {
             val repoListIntent = Intent(this, UserReposActivity::class.java)
             repoListIntent.putExtra(UserReposActivity.REPO_EXTRA_USER, viewModel.userLogin)
             startActivity(repoListIntent)
+            CommonHelper.openSlideAnimation(this)
         } else {
             CommonHelper.showMessageLong(this, getString(R.string.error_repo_empty))
         }

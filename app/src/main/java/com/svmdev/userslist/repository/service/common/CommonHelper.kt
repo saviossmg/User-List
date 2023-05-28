@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.widget.Toast
+import com.svmdev.userslist.R
 import java.text.SimpleDateFormat
 
 object CommonHelper {
@@ -27,6 +28,14 @@ object CommonHelper {
         val openURL = Intent(Intent.ACTION_VIEW)
         openURL.data = Uri.parse(url)
         ctx.startActivity(openURL)
+    }
+
+    fun openSlideAnimation(ctx: Activity) {
+        ctx.overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left)
+    }
+
+    fun closeSlideAnimation(ctx: Activity) {
+        ctx.overridePendingTransition(R.anim.slide_in_left, R.anim.slide_out_right)
     }
 
 

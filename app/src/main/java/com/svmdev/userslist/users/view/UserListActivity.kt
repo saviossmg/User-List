@@ -88,6 +88,7 @@ class UserListActivity : BaseActivity() {
         val profileIntent = Intent(this, UserProfileActivity::class.java)
         profileIntent.putExtra(UserProfileActivity.USER_EXTRA, user)
         startActivity(profileIntent)
+        CommonHelper.openSlideAnimation(this)
 
     }
 

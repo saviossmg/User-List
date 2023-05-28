@@ -1,16 +1,40 @@
 package com.svmdev.userslist.users.view
 
+import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
+import android.os.Build
+import android.window.OnBackInvokedDispatcher
+import androidx.activity.OnBackPressedCallback
 import androidx.appcompat.app.AppCompatActivity
 
 
 open class BaseActivity : AppCompatActivity() {
 
     var mPrevConfig: Configuration? = null
+    lateinit var actContext: Activity
 
     fun initPrevConfig() {
         mPrevConfig = Configuration(resources.configuration)
+        actContext = this
+    }
+
+    fun initBackPressed() {
+        if (Build.VERSION.SDK_INT >= 33) {
+            onBackInvokedDispatcher.registerOnBackInvokedCallback(OnBackInvokedDispatcher.PRIORITY_DEFAULT) {
+                exitOnBackPressed()
+            }
+        } else {
+            onBackPressedDispatcher.addCallback(this, object : OnBackPressedCallback(true) {
+                override fun handleOnBackPressed() {
+                    exitOnBackPressed()
+                }
+            })
+        }
+    }
+
+    open fun exitOnBackPressed() {
+
     }
 
     override fun onConfigurationChanged(newConfig: Configuration) {
