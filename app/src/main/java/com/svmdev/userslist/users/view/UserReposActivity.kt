@@ -21,6 +21,8 @@ class UserReposActivity : BaseActivity() {
     private var adapter: UserRepoListAdapter? = null
     private var showMessage = true
 
+    var initializedView = false
+
     companion object {
         const val REPO_EXTRA_USER = "REPO_EXTRA_USER"
     }
@@ -63,13 +65,11 @@ class UserReposActivity : BaseActivity() {
         binding.spPage.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onNothingSelected(parent: AdapterView<*>?) {}
 
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                viewModel.performChangePage(position)
+            override fun onItemSelected( parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+                if (!initializedView)
+                    initializedView = true
+                else
+                    viewModel.performChangePage(position)
             }
         }
 
@@ -87,10 +87,7 @@ class UserReposActivity : BaseActivity() {
             )
             adPagesSpinner.setDropDownViewResource(R.layout.spinner_select_text)
             binding.spPage.adapter = adPagesSpinner
-        }
-
-        viewModel.selectSpinnerIndex.observe(this) {
-            viewModel.performChangePage(it)
+            binding.spPage.setSelection(viewModel.selectedPage.index, false)
         }
 
         viewModel.userRepositoryList.observe(this) { repoList -> onLoadUserRepoList(repoList) }
@@ -99,7 +96,12 @@ class UserReposActivity : BaseActivity() {
     private fun loadInformation() {
         viewModel.loading.observe(this) { onShowLoadingScreen(it) }
 
-        viewModel.performLoadInfo()
+        if(viewModel.isLoadBefore()){
+            viewModel.loadInfoByCache()
+        } else {
+            viewModel.performLoadInfoFirstTime()
+        }
+
     }
 
     private fun onLoadUserRepoList(userList: ArrayList<UserRepository>) {
@@ -124,7 +126,7 @@ class UserReposActivity : BaseActivity() {
         val visibility = if (show) View.VISIBLE else View.GONE
 
         binding.icLoading.tvLoading.text =
-            getString(R.string.repo_message_loading, viewModel.selectedPage?.page.toString())
+            getString(R.string.repo_message_loading, viewModel.selectedPage.page.toString())
         binding.icLoading.root.visibility = visibility
     }
 

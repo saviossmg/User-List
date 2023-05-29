@@ -8,9 +8,11 @@ class DataCache {
         val cacheUsersList = ArrayList<User>()
         var cacheUserProfile: User? = null
         val cacheUserRepositoryList = ArrayList<UserRepository>()
-        val cacheUserRepositoryPageList = ArrayList<UserListRepositoryPage>()
 
-        var repoListPageSelected: PageInfo? = null
+        val repoListUserListRepoPageList = ArrayList<UserListRepositoryPage>()
+        val repoListPageInfoList = ArrayList<PageInfo>()
+        var repoListPageSelected: PageInfo = PageInfo(0,1)
+        var repoListLoaded = false
     }
 
 }

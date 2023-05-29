@@ -1,6 +1,5 @@
 package com.svmdev.userslist.users.view
 
-import android.app.Activity
 import android.content.pm.ActivityInfo
 import android.content.res.Configuration
 import android.os.Build
@@ -12,11 +11,9 @@ import androidx.appcompat.app.AppCompatActivity
 open class BaseActivity : AppCompatActivity() {
 
     var mPrevConfig: Configuration? = null
-    lateinit var actContext: Activity
 
     fun initPrevConfig() {
         mPrevConfig = Configuration(resources.configuration)
-        actContext = this
     }
 
     fun initBackPressed() {

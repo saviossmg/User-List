@@ -11,15 +11,17 @@ class UserReposViewModel : BaseViewModel() {
     val userRepositoryList = MutableLiveData<ArrayList<UserRepository>>()
     val pageInfoList = MutableLiveData<ArrayList<PageInfo>>()
     val repoUrl = MutableLiveData<String>()
-    val selectSpinnerIndex = MutableLiveData<Int>()
 
     private val userRepositoryPageList = ArrayList<UserListRepositoryPage>()
-    private val pagesInfo = ArrayList<PageInfo>()
-    var selectedPage: PageInfo? = null
+    val pagesInfo = ArrayList<PageInfo>()
+    lateinit var selectedPage: PageInfo
 
-    fun performLoadInfo() {
+    fun performLoadInfoFirstTime(){
         onShowLoading(true)
-        val repoInfo = DataCache.cacheUserRepositoryPageList
+
+        DataCache.repoListLoaded = true
+
+        val repoInfo = DataCache.repoListUserListRepoPageList
         val listSize = repoInfo.size
         val pages = ArrayList<PageInfo>()
 
@@ -31,31 +33,39 @@ class UserReposViewModel : BaseViewModel() {
             pages.add(currentPageInfo)
         }
 
-        userRepositoryPageList.clear()
-        userRepositoryPageList.addAll(repoInfo)
-
-        if (DataCache.repoListPageSelected == null) {
-            DataCache.repoListPageSelected = pages[0]
-            selectSpinnerIndex.postValue(0)
-            pageInfoList.postValue(pages)
-
-        } else {
-            pageInfoList.postValue(pages)
-            selectSpinnerIndex.postValue(DataCache.repoListPageSelected!!.index)
-        }
-
-        selectedPage = DataCache.repoListPageSelected!!
-
-        pagesInfo.clear()
+        DataCache.repoListPageSelected = pages[0]
+        DataCache.repoListPageInfoList.addAll(pages)
+        selectedPage = pages[0]
         pagesInfo.addAll(pages)
+        userRepositoryPageList.addAll(repoInfo)
+        pageInfoList.postValue(pages)
+        val selectedUserRepoListPage = userRepositoryPageList[selectedPage.index].elements
+        userRepositoryList.postValue(selectedUserRepoListPage)
+    }
+
+    fun loadInfoByCache() {
+        onShowLoading(true)
+
+        selectedPage = DataCache.repoListPageSelected
+        pagesInfo.addAll(DataCache.repoListPageInfoList)
+        userRepositoryPageList.addAll(DataCache.repoListUserListRepoPageList)
+        pageInfoList.postValue(DataCache.repoListPageInfoList)
+
+        val selectedUserRepoListPage = userRepositoryPageList[selectedPage.index].elements
+        userRepositoryList.postValue(selectedUserRepoListPage)
+
     }
 
     fun performChangePage(selectedPosition: Int) {
+        selectedPage = pagesInfo[selectedPosition]
+        DataCache.repoListPageSelected = selectedPage
         onShowLoading(true)
-        val page = pagesInfo[selectedPosition]
-        DataCache.repoListPageSelected = page
-        val selectedUserRepoListPage = userRepositoryPageList[page.index].elements
+        val selectedUserRepoListPage = userRepositoryPageList[selectedPage.index].elements
         userRepositoryList.postValue(selectedUserRepoListPage)
+    }
+
+    fun isLoadBefore(): Boolean {
+        return DataCache.repoListLoaded
     }
 
     fun onShowLoading(show: Boolean) {
@@ -63,7 +73,8 @@ class UserReposViewModel : BaseViewModel() {
     }
 
     fun resetPageInfo() {
-        DataCache.repoListPageSelected = null
+        DataCache.repoListPageSelected = PageInfo(0,1)
+        DataCache.repoListLoaded = false
     }
 
 }

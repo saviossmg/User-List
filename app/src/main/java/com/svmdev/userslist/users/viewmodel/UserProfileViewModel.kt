@@ -52,10 +52,10 @@ class UserProfileViewModel : BaseViewModel() {
                     userRepoListPaginated.addAll(onExecutePagination())
 
                     DataCache.cacheUserRepositoryList.clear()
-                    DataCache.cacheUserRepositoryPageList.clear()
+                    DataCache.repoListUserListRepoPageList.clear()
 
                     DataCache.cacheUserRepositoryList.addAll(userRepoList)
-                    DataCache.cacheUserRepositoryPageList.addAll(userRepoListPaginated)
+                    DataCache.repoListUserListRepoPageList.addAll(userRepoListPaginated)
                 }
                 userListRepositoryPagination.postValue(userRepoListPaginated)
                 loading.postValue(false)
