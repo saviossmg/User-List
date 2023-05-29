@@ -14,4 +14,5 @@ Aplicativo para Android 6 ou superior, com as seguintes caracteristicas:
 		- link: https://github.com/square/okhttp
 
 Projeto já exportado para rodar diretamente no Android Studio, somente sendo necessário incluir uma chave para ter acesso a API do GitHub.
-Para inlcuir essa API, vá na classe ServiceLinks e coloque a chave na variavel token
+
+Para inlcuir essa chave, vá na classe ServiceLinks e coloque a chave na variavel token
