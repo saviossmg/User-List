@@ -15,4 +15,7 @@ Aplicativo para Android 6 ou superior, com as seguintes caracteristicas:
 
 Projeto já exportado para rodar diretamente no Android Studio, somente sendo necessário incluir uma chave para ter acesso a API do GitHub.
 
-Para inlcuir essa chave, vá na classe ServiceLinks e coloque a chave na variavel token
+Para inlcuir essa chave, vá na classe ServiceLinks e coloque a chave na variavel token.
+
+Veja como criar sua chave para a API do GitHub [aqui](https://docs.github.com/pt/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token)
+
